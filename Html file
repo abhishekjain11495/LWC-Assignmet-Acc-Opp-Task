@@ -1,0 +1,142 @@
+<template>
+	<!--LIGHTNING DATATABLE FOR OPP-->
+	<lightning-card title="Related Opportunity And Tasks">
+		<!-- <template if:true={records}> -->
+		<!--LIGHTNING DATATABLE-->
+		<div>
+			<lightning-datatable key-field="Id" data={opportunityData} hide-checkbox-column="true" columns={ColumnsOpp}>
+			</lightning-datatable>
+		</div>
+		<div>
+			<lightning-button variant="brand" label="ReloadOpp" onclick={handleOppClick}></lightning-button>
+		</div>
+
+		<!-- <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread" style="padding-top: 0.5em;"> -->
+
+			<!--RECORDS PER PAGE-->
+
+
+			<!--PAGE NAVIGATION-->
+			<!-- <div> -->
+			<lightning-layout multiple-rows>
+				<lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6"
+					large-device-size="2">
+					<div class="slds-col">
+						<div class="slds-list_inline slds-p-bottom_xx-small">
+							<label class="slds-text-color_weak slds-p-horizontal_x-small" for="recordsPerPage">Page Size:</label>
+							<div class="slds-select_container">
+								<select class="slds-select" id="recordsPerPage" onchange={handleRecordsPerPage}>
+                            <template for:each={pageSizeOptions} for:item="option">
+                                <option key={option} value={option}>{option}</option>
+                            </template>
+                        </select>
+							</div>
+						</div>
+					</div>
+	</lightning-layout-item>
+
+				<lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6"
+					large-device-size="1">
+					<lightning-button disabled={bDisableFirst} icon-name="utility:jump_to_left" label="First"
+						class="slds-p-horizontal_x-small" alternative-text="first page" onclick={firstPage}>
+					</lightning-button>
+
+				</lightning-layout-item>
+				<lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6"
+					large-device-size="2">
+					<lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label="Previous"
+						alternative-text="Previous" onclick={previousPage}></lightning-button>
+				</lightning-layout-item>
+
+				<lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6"
+					large-device-size="2">
+					<span class="slds-badge">Showing {pageNumber} &nbsp;of&nbsp; {totalOppPages} &nbsp;&nbsp;Page(s)</span>
+				</lightning-layout-item>
+
+				<lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6"
+					large-device-size="2">
+					<lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label="Next"
+						alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small"
+						icon-position="right"></lightning-button>
+				</lightning-layout-item>
+
+				<lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6"
+					large-device-size="1">
+					<lightning-button disabled={bDisableLast} icon-name="utility:jump_to_right" label="Last"
+						alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+				</lightning-layout-item>
+				<!--TOTAL RECORDS-->
+				<lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6"
+					large-device-size="2">
+					<div class="slds-float_right">
+						<span class="slds-badge"> Total Records: {totalOppRecords}</span>
+					</div>
+				</lightning-layout-item>
+
+			</lightning-layout>
+
+
+			<!-- </div> -->
+
+
+
+		</div>
+		<!-- </template> -->
+	</lightning-card>
+
+	<!--LIGHTNING DATATABLE FOR TASK-->
+	<lightning-card title="Related Opportunity And Tasks">
+		<!-- <template if:true={records}> -->
+		<!--LIGHTNING DATATABLE-->
+		<div>
+			<lightning-datatable key-field="Id" data={taskkData} hide-checkbox-column="true" columns={taskColumns}>
+			</lightning-datatable>
+		</div>
+		<div>
+			<lightning-button variant="brand" label="ReloadTask" onclick={handletaskClick}></lightning-button>
+		</div>
+
+		<div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread" style="padding-top: 0.5em;">
+			<!--RECORDS PER PAGE-->
+			<div class="slds-col">
+				<div class="slds-list_inline slds-p-bottom_xx-small">
+					<label class="slds-text-color_weak slds-p-horizontal_x-small" for="recordsPerPage">Page Size:</label>
+					<div class="slds-select_container">
+						<select class="slds-select" id="recordsPerrPage" onchange={handleRecordsPerPage}>
+                            <template for:each={pageSizeOptions} for:item="option">
+                                <option key={option} value={option}>{option}</option>
+                            </template>
+                        </select>
+					</div>
+				</div>
+			</div>
+
+			<!--PAGE NAVIGATION-->
+			<div>
+				<lightning-button disabled={bDisableFirst} icon-name="utility:jump_to_left" label="First"
+					class="slds-p-horizontal_x-small" alternative-text="first page" onclick={firstPage}>
+				</lightning-button>
+
+				<lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label="Previous"
+					alternative-text="Previous" onclick={previousPage}></lightning-button>
+				&nbsp;
+				<span class="slds-badge">Showing {pageNumber} &nbsp;of&nbsp; {totalTaskPages} &nbsp;&nbsp;Page(s)</span>
+				&nbsp;
+				<lightning-button disabled={DisableLast} icon-name="utility:chevronright" label="Next"
+					alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right">
+				</lightning-button>
+
+				<lightning-button disabled={DisableLast} icon-name="utility:jump_to_right" label="Last"
+					alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+			</div>
+
+			<!--TOTAL RECORDS-->
+			<div class="slds-clearfix">
+				<div class="slds-float_right">
+					<span class="slds-badge"> Total Records: {totalTaskRecords}</span>
+				</div>
+			</div>
+		</div>
+		<!-- </template> -->
+	</lightning-card>
+</template>
